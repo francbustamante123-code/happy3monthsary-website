@@ -1,0 +1,133 @@
+<html lang="en">
+<head>
+<title>I LOVE YOU ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#52465f;
+  --accent:#0004ff;
+  --glass: rgb(255, 255, 255);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(135deg,#0f172a 0%, #071129 60%);color:#fff}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: url('200w.gif') no-repeat center center fixed;
+  background-size: cover;
+  font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif;
+  color: rgb(124, 3, 3);
+}
+.wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+.card{background:linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(255,255,255,0.01));backdrop-filter: blur(6px);border-radius:18px;padding:48px 40px;text-align:center;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+h1{font-family:'Pinyon Script',serif;font-size:72px;margin:0 0 10px;letter-spacing:2px;text-shadow:0 6px 18px rgba(255,77,109,0.12)}
+p.lead{margin:0 0 24px;color:#000000;opacity:0.9}
+.pulse{animation:pulse 1.2s infinite ease-in-out}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+.btn{display:inline-block;padding:12px 22px;border-radius:12px;font-weight:600;background:transparent;border:2px solid rgba(0, 0, 0, 0.12);color:#fff;text-decoration:none;cursor:pointer}
+.btn-ask{margin-top:12px;background:linear-gradient(90deg,var(--accent),#ff7aa2);border:none}
+.small{font-size:14px;color:#000000;opacity:0.85;margin-top:10px}
+
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:40;visibility:hidden;opacity:0;transition:opacity .18s ease,visibility .18s}
+.modal{background:var(--bg);padding:28px;border-radius:14px;min-width:320px;max-width:92%;text-align:center;box-shadow:0 10px 40px rgba(229, 233, 253, 0.6)}
+.modal.show{transform:translateY(0)}
+.modal h2 {
+  color: #ffffff; /* Set to white or any color that contrasts well with your background */
+}
+.modal p {
+  color: #ffffff; /* Set to white or any color that contrasts well with your background */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Optional: Adds a soft shadow to the text */
+}
+
+
+
+/* FIX: prevent NO button stretching */
+.choices {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Ensures vertical centering */
+  gap: 12px;
+}
+.choice{
+  padding:10px 18px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+  transition:transform 0.2s;
+  flex-shrink:0; /* prevents shrinking/stretching */
+}
+.choice.yes{background:linear-gradient(90deg,#ff6b81,#ff3d7a);color:white;font-size:20px;}
+.choice.no{background:linear-gradient(90deg,#ff6b81,#ff3d7a);color:white}
+
+footer{margin-top:18px;font-size:12px;color:#000000;opacity:0.9}
+
+@media (max-width:420px){h1{font-size:48px}.card{padding:28px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card" role="main">
+    <h1>I LOVE YOU</h1>
+    <p class="lead">for you niga</p>
+
+    <button class="btn btn-ask" id="openAsk">Date?</button>
+    <div class="small">(click, and choose yes😈)</div>
+
+    <footer>HAPPY THIRD MONTHSARY, BABIEEEEEE! I made this website for you—I hope you like it. I love you sooo, sooo, sooo much! 😘</footer>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <h2 id="modalTitle">Do you like it?</h2>
+    <p>If you say yes, I'll be the happiest person ever💌</p>
+    <div class="choices">
+      <a id="yesBtn" class="choice yes" href="yes.html">Yes</a>
+      <a id="noBtn" class="choice no" href="#">No</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const modal = document.getElementById('modal');
+const openAsk = document.getElementById('openAsk');
+const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
+
+function showModal(){
+  modal.style.visibility = 'visible';
+  modal.style.opacity = '1';
+}
+function hideModal(){
+  modal.style.opacity = '0';
+  modal.style.visibility = 'hidden';
+}
+
+openAsk.addEventListener('click', showModal);
+// close if clicked outside modal
+modal.addEventListener('click', (e)=>{
+  if(e.target === modal) hideModal();
+});
+
+// fun feature: grow YES when NO is clicked
+noBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  let currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+  yesBtn.style.fontSize = (currentSize + 10) + "px";
+});
+
+// allow escape key to close modal
+document.addEventListener('keydown',(e)=>{
+  if(e.key === 'Escape') hideModal();
+});
+</script>
+</body>
+</html>
